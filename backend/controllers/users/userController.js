@@ -1,6 +1,9 @@
 const bycryptjs = require("bcryptjs");
-const xssFilter = require("xss-filters");
+const jwt = require("jsonwebtoken");
 const User = require("../../models/user");
+const xssFilters = require("xss-filters");
+
+require("dotenv").config();
 
 const user = {
   login: async (req, res) => {},

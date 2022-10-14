@@ -3,10 +3,10 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
-const PrivateRoutes = () => {
+const AdminRoutes = () => {
   const { user } = useContext(UserContext);
 
-  return user ? <Outlet /> : <Navigate to="/signin" />;
+  return user.type == "admin" ? <Outlet /> : <Navigate to="/404" />;
 };
 
-export default PrivateRoutes;
+export default AdminRoutes;
