@@ -42,16 +42,13 @@ function App() {
                   exact
                   element={
                     user ? (
-                      <Navigate to={"./home"} replace></Navigate>
+                      <Navigate to={"home"} replace></Navigate>
                     ) : (
                       <Navigate to={"/signin"} replace></Navigate>
                     )
                   }
                 />
-                <Route
-                  path="/participants"
-                  element={<CardPage></CardPage>}
-                ></Route>
+                <Route path="/home" element={<CardPage></CardPage>}></Route>
               </Route>
               <Route path="/signin" element={<SigninPage></SigninPage>}></Route>
             </Routes>
