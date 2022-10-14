@@ -5,6 +5,7 @@ import { UserContext } from "../context/UserContext";
 
 const PrivateRoutes = () => {
   const { user } = useContext(UserContext);
+
   return user ? <Outlet /> : <Navigate to="/signin" />;
 };
 
