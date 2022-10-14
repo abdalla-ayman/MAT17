@@ -1,0 +1,10 @@
+.App{
+  max-height: 100vh;
+}
+.main{
+  margin-left: min(17vw, 340px);
+  margin-top: 80px;
+  margin-right: 20px;
+  overflow: scroll;
+  padding: 10px 15px;
+}

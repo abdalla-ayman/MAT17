@@ -1,24 +1,64 @@
-import logo from './logo.svg';
-import './App.css';
+import "./styles/App.css";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import React, { useContext } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { UserContext, ContextWrapper } from "./context/UserContext";
+
+import PrivateRoutes from "./utils/PrivateRoutes";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#2F76DB",
+      light: "#2F76DB",
+      dark: "#1F2D5A",
+    },
+    secondary: {
+      main: "#FBFBFB",
+    },
+  },
+});
 
 function App() {
+  const { user } = useContext(UserContext);
+  // get current pathname
+  let current_path = window.location.pathname;
+  // If user not logged in redirect to login page
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ContextWrapper>
+      <div className="App">
+        <ThemeProvider theme={theme}>
+          <Router>
+            <Routes>
+              <Route element={<PrivateRoutes></PrivateRoutes>}>
+                <Route
+                  path="/"
+                  exact
+                  element={
+                    user ? (
+                      <Navigate to={"./home"} replace></Navigate>
+                    ) : (
+                      <Navigate to={"/signin"} replace></Navigate>
+                    )
+                  }
+                />
+                <Route
+                  path="/participants"
+                  element={<CardPage></CardPage>}
+                ></Route>
+              </Route>
+              <Route path="/signin" element={<SigninPage></SigninPage>}></Route>
+            </Routes>
+          </Router>
+        </ThemeProvider>
+      </div>
+    </ContextWrapper>
   );
 }
 
