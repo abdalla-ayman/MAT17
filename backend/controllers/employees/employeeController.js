@@ -58,18 +58,29 @@ const employee = {
   },
   delete: async (req, res) => {
     try {
+      const { id } = req.params.id;
+
+      //find and delete from database
+      let employee = await User.findByIdAndDelete(id);
+      if (employee) res.json("deleted successfully");
     } catch (error) {
       console.log(error);
     }
   },
   viewAll: async (req, res) => {
     try {
+      let employees = await User.find({});
+      res.json(employees);
     } catch (error) {
       console.log(error);
     }
   },
   viewOne: async (req, res) => {
     try {
+      let id = req.params.id;
+
+      let user = await User.findById(id);
+      res.json(user);
     } catch (error) {
       console.log(error);
     }

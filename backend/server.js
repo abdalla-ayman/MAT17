@@ -17,7 +17,7 @@ app.use(cors());
 
 //setting routes
 app.use("/auth", require("./routes/users/auth"));
-app.use("/employee", require("./routes/employees"));
+app.use("/employee", require("./routes/employees/employees"));
 
 const Port = process.env.PORT || 5000;
 app.listen(Port, () => console.log(`server is running on port ${Port}`));

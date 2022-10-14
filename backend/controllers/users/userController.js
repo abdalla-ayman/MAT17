@@ -1,12 +1,50 @@
-const bycryptjs = require("bcryptjs");
+const bycrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../../models/user");
-const xssFilters = require("xss-filters");
+const xssFilter = require("xss-filters");
 
 require("dotenv").config();
 
 const user = {
-  login: async (req, res) => {},
+  login: async (req, res) => {
+    try {
+      let { username, password } = req.body;
+
+      if (!(username && password)) {
+        return res.status(400).json("enter all feilds");
+      }
+      //filter input
+      (username = xssFilter.inHTMLData(username)),
+        (password = xssFilter.inHTMLData(password));
+
+      //find user from data base
+      let user = await User.findOne({ username });
+
+      if (!user) {
+        return res.status(400).json("user not found");
+      }
+
+      let isMatch = await bycrypt.compare(password, user.password);
+
+      if (!isMatch) {
+        return res.status(400).json("wrong password");
+      }
+
+      //sign user
+      jwt.sign({ id: user._id }, process.env.JWTSECRET, (err, token) => {
+        if (err) throw err;
+        res.json({
+          token,
+          user: {
+            id: user.id,
+            username: user.username,
+          },
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
 
 module.exports = user;
