@@ -22,6 +22,7 @@ import VacationRequestsPage from "./pages/admin/VacationRequestsPage";
 import RequestVacationPage from "./pages/employee/RequestVacationPage";
 import SendComplaintPage from "./pages/employee/SendComplaintPage";
 import Error404 from "./pages/Error404";
+import EmployeeRoutes from "./utils/EmployeeRoutes";
 
 const theme = createTheme({
   palette: {
@@ -63,10 +64,16 @@ function App() {
                     )
                   }
                 />
-                <Route
-                  path="/employeeHome"
-                  element={<EmployeeHome></EmployeeHome>}
-                ></Route>
+                <Route element={<EmployeeRoutes></EmployeeRoutes>}>
+                  <Route
+                    path="/employeeHome"
+                    element={<EmployeeHome></EmployeeHome>}
+                  ></Route>
+                  <Route
+                    path="/requestVacation"
+                    element={<RequestVacationPage></RequestVacationPage>}
+                  ></Route>
+                </Route>
                 <Route element={<AdminRoutes></AdminRoutes>}>
                   <Route
                     path="/adminHome"
@@ -94,10 +101,6 @@ function App() {
                   ></Route>
                 </Route>
               </Route>
-              <Route
-                path="/requestVacation"
-                element={<RequestVacationPage></RequestVacationPage>}
-              ></Route>
               <Route path="/signin" element={<SigninPage></SigninPage>}></Route>
               <Route path="/404" element={<Error404></Error404>}></Route>
             </Routes>
