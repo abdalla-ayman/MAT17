@@ -26,4 +26,14 @@ const authenticate = async () => {
   }
 };
 
-export { login, authenticate };
+const getEmails = async () => {
+  try {
+    const response = await axiosClient.get("/auth/emails");
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { login, authenticate, getEmails };
