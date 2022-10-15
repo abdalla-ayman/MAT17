@@ -11,11 +11,9 @@ import { UserContext } from "./context/UserContext";
 import ContextWrapper from "./context/UserContext";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import SigninPage from "./pages/SigninPage";
-import EmployeeHome from "./pages/employee/EmployeeHome";
 import AdminRoutes from "./utils/AdminRoutes";
 import AttendancePage from "./pages/admin/AttendancePage";
 import ComplaintPage from "./pages/admin/ComplaintsPage";
-import PayrollPage from "./pages/admin/PayrollPage";
 import SendEmailsPage from "./pages/admin/SendEmailsPage";
 import VacationRequestsPage from "./pages/admin/VacationRequestsPage";
 import RequestVacationPage from "./pages/employee/RequestVacationPage";
@@ -61,7 +59,7 @@ function App() {
                 exact
                 element={
                   user.role == "employee" ? (
-                    <Navigate to={"/employeeHome"} replace></Navigate>
+                    <Navigate to={"/requestVacation"} replace></Navigate>
                   ) : user.role == "admin" ? (
                     <Navigate to={"/adminHome"} replace></Navigate>
                   ) : (
@@ -111,14 +109,6 @@ function App() {
                 }
               ></Route>
               <Route
-                path="/payroll"
-                element={
-                  <PrivateRoutes>
-                    <PayrollPage></PayrollPage>
-                  </PrivateRoutes>
-                }
-              ></Route>
-              <Route
                 path="/sendEmail"
                 element={
                   <PrivateRoutes>
@@ -135,15 +125,7 @@ function App() {
                 }
               ></Route>
               <Route path="/policies" element={<Policies></Policies>}></Route>
-              <Route
-                path="/signin"
-                element={
-                
-                  (
-                    <SigninPage></SigninPage>
-                  )
-                }
-              ></Route>
+              <Route path="/signin" element={<SigninPage></SigninPage>}></Route>
               <Route path="/404" element={<Error404></Error404>}></Route>
             </Routes>
           </Router>
