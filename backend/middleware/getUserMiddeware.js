@@ -8,7 +8,7 @@ const getUserMiddleware = async (req, res, next) => {
     if (!token) return next();
     let decodedToken = jwt.decode(token);
 
-    let user = await User.findById(decodedToken.id);
+    let user = await User.findById(decodedToken.id).select("-password");
     if (user) req.user = user;
 
     next();
