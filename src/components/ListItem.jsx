@@ -8,6 +8,7 @@ import PaidIcon from '@mui/icons-material/Paid';
 import Email from '@mui/icons-material/Email';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import ArticleIcon from '@mui/icons-material/Article';
+import Typography from '@mui/material/Typography'
 import React from 'react'
 
 export default function ListItem({name}) {
@@ -31,7 +32,10 @@ export default function ListItem({name}) {
       <ListItemIcon>
         <Icon color='secondary.black'/>
       </ListItemIcon>
-      <ListItemText primary={title} style={{fontSize:"10px"}} />
+      <ListItemText 
+      disableTypography
+        primary={<Typography type="body2" >{title}</Typography>}
+        />
     </ListItemButton>
     </a>
   )
