@@ -1,31 +1,30 @@
-import axiosClient from "axios";
+import { response } from "express";
+import axiosClient from "./axiosClient";
 
 const login = async (username, password) => {
   try {
-    const response = await axiosClient.post("/login", { username, password });
-    console.log(response);
-    return response;
+    const response = await axiosClient.post("/auth/login", {
+      username,
+      password,
+    });
+    localStorage.setItem("auth-token", response.data.token);
+    return response.data.user;
   } catch (error) {
-    console.log(error);
+    throw error.response;
   }
 };
 
 const authenticate = async () => {
   try {
-    const response = await axiosClient.get("/login", {
+    const response = await axiosClient.get("/authenticate", {
       headers: {
-        authToken: localStorage.getItem("auth-token"),
+        authentication: localStorage.getItem("auth-token"),
       },
-     
     });
-    console.log(response);
-    return response;
+    return response.data.user;
   } catch (error) {
     console.log(error);
   }
 };
 
-
-export {
-    login, authenticate
-}
+export { login, authenticate };

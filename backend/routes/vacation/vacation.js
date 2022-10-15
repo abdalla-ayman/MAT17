@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const vacation = require("../../controllers/employees/vacationController");
+const vacation = require("../../controllers/vacation/vacationController");
 
 //view all
 router.get("/", vacation.viewAll);

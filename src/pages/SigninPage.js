@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
@@ -12,10 +12,22 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
+import { login } from "../api/auth";
+
 export default function LoginPage() {
-  const { login } = useContext(UserContext);
-  const onLogin = (e) => {
-    login(e);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { setUser } = useContext(UserContext);
+
+  const onLogin = async (e) => {
+    try {
+      e.preventDefault();
+      let user = await login(username, password);
+      setUser(user);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // const handleSubmit = (event) => {
@@ -53,6 +65,7 @@ export default function LoginPage() {
             label="User Name"
             name="username"
             autoComplete="username"
+            onChange={(e) => setUsername(e.target.value)}
             autoFocus
           />
           <TextField
@@ -64,6 +77,7 @@ export default function LoginPage() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={(e) => setPassword(e.target.value)}
           />
           {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
