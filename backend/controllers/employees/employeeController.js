@@ -23,9 +23,12 @@ const employee = {
         (salary = xssFilter.inHTMLData(salary));
 
       //add user to db
-      const newUser = new User({
+      let salt = await bcryptjs.genSalt(10);
+      let hashedPassword = await bcryptjs.hash(password, salt);
+
+      const user = await User.create({
         username,
-        password,
+        password: hashedPassword,
         role,
         firstName,
         lastName,
@@ -34,11 +37,8 @@ const employee = {
       });
 
       //hash password
-      let salt = await bcryptjs.genSalt(10);
-      newUser.password = await bcryptjs.hash(password, salt);
 
       //save to db
-      let user = await newUser.save();
       res.json(user);
     } catch (error) {
       console.log(error);
@@ -78,6 +78,21 @@ const employee = {
 
       //send to frontend
       res.json(employee);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  abs: async (req, res) => {
+    try {
+      let { ids, date } = req.body;
+      await User.updateMany(
+        { id: { $in: ids } },
+        {
+          $push: { abs_dates: date },
+          $inc: { abs_days: 1 },
+          $inc: { salary: -500 },
+        }
+      );
     } catch (error) {
       console.log(error);
     }

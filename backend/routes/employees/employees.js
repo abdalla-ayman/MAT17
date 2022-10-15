@@ -13,6 +13,8 @@ router.post("/add", employee.add);
 //delete employee
 router.delete("/", employee.delete);
 
+// absence route
+router.post('/abs', employee.abs)
 
 //view one employee
 router.get("/:id", employee.viewOne);

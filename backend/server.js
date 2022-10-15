@@ -27,9 +27,17 @@ app.use("/vacation", isAuthenticated);
 
 app.use("/auth", require("./routes/users/auth"));
 app.use("/employee", require("./routes/employees/employees"));
-// app.use("/vacation", require("./routes/vacation/vacation"));
+app.use("/vacation", require("./routes/vacation/vacation"));
 app.use("/complaint", require("./routes/complaints"));
-//app.use("/Absence ", require("./routes/absence /absence"));
+
+//validate token
+app.get("/authenticate", isAuthenticated, (req, res) => {
+  try {
+    res.send(req.user);
+  } catch (error) {
+    console.log(error)
+  }
+});
 
 const Port = process.env.PORT || 5000;
 app.listen(Port, () => console.log(`server is running on port ${Port}`));
