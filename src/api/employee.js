@@ -43,7 +43,7 @@ const ViewAll = async (page) => {
 
 const ViewOne = async (emp_id) => {
   try {
-    const response = await axiosClient.get(`/${emp_id}`);
+    const response = await axiosClient.get(`/employee/${emp_id}`);
     console.log(response);
     return response;
   } catch (error) {
@@ -52,4 +52,15 @@ const ViewOne = async (emp_id) => {
   }
 };
 
-export { addEmployee, ViewAll, deleteEmployee, ViewOne };
+const absence = async (emp_ids, date) => {
+  try {
+    const response = await axiosClient.post("/employee/abs", { emp_ids, date });
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.log(error);
+    return error.response.data;
+  }
+};
+
+export { addEmployee, ViewAll, deleteEmployee, ViewOne, absence };
