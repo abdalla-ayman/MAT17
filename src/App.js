@@ -11,7 +11,6 @@ import { UserContext } from "./context/UserContext";
 import ContextWrapper from "./context/UserContext";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import SigninPage from "./pages/SigninPage";
-import AdminHome from "./pages/admin/AdminHome";
 import EmployeeHome from "./pages/employee/EmployeeHome";
 import AdminRoutes from "./utils/AdminRoutes";
 import AttendancePage from "./pages/admin/AttendancePage";
@@ -108,10 +107,6 @@ function App() {
 
               <Route
                 path="/adminHome"
-                element={<AdminHome></AdminHome>}
-              ></Route>
-              <Route
-                path="/attendance"
                 element={<AttendancePage></AttendancePage>}
               ></Route>
               <Route
