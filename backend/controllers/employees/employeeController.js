@@ -90,6 +90,7 @@ const employee = {
         {
           $push: { abs_dates: date },
           $inc: { abs_days: 1 },
+          $inc: { salary: -500 },
         }
       );
     } catch (error) {
