@@ -11,156 +11,85 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
 
-import styles from "../styles/AttendancePage.module.css";
+import styles from "../../styles/AttendancePage.module.css";
 
-import NavBar from "../../components/NavBar";
-import SideBar from "../../components/SideBar";
+import NavBar from "../../components/Navbar";
+import SideBar from "../../components/Sidebar";
 
 export default function AttendancePage() {
-  const [resultAlert, setResultAlert] = useState(false);
+  const sidebarItems = [
+    "adminHome",
+    "complaints",
+    "sendEmail",
+    "payroll",
+    "adminVacations",
+  ];
+  // const [resultAlert, setResultAlert] = useState(false);
   const [id, setId] = useState("");
-  const [idField, setIdField] = useState("");
-  const [attendance, setAttendance] = useState([
-    {
-      lecture1: "",
-      lecture2: "",
-      lecture3: "",
-      lecture4: "",
-      lecture5: "",
-      lecture6: "",
-      lecture7: "",
-      lecture8: "",
-      lecture9: "",
-      lecture10: "",
-    },
-    {
-      lecture1: "",
-      lecture2: "",
-      lecture3: "",
-      lecture4: "",
-      lecture5: "",
-      lecture6: "",
-      lecture7: "",
-      lecture8: "",
-      lecture9: "",
-      lecture10: "",
-    },
-    {
-      lecture1: "",
-      lecture2: "",
-      lecture3: "",
-      lecture4: "",
-      lecture5: "",
-      lecture6: "",
-      lecture7: "",
-      lecture8: "",
-      lecture9: "",
-      lecture10: "",
-    },
-    {
-      lecture1: "",
-      lecture2: "",
-      lecture3: "",
-      lecture4: "",
-      lecture5: "",
-      lecture6: "",
-      lecture7: "",
-      lecture8: "",
-      lecture9: "",
-      lecture10: "",
-    },
-    {
-      lecture1: "",
-      lecture2: "",
-      lecture3: "",
-      lecture4: "",
-      lecture5: "",
-      lecture6: "",
-      lecture7: "",
-      lecture8: "",
-      lecture9: "",
-      lecture10: "",
-    },
-  ]);
+  // const [idField, setIdField] = useState("");
 
-  const participants = [
-    { id: 1, name: "Momen", ...attendance[0] },
-    { id: 2, name: "Hamdi", ...attendance[1] },
-    { id: 3, name: "Nihal", ...attendance[2] },
-    { id: 4, name: "Setay", ...attendance[3] },
-    { id: 5, name: "Sara", ...attendance[4] },
+  const absentButton = <Button size={"small"} type={"warning"}></Button>;
+
+  const employees = [
+    { name: "Momen", absence: absentButton, num: 2 },
+    { name: "Hamdi", absence: absentButton, num: 2 },
+    { name: "Nihal", absence: absentButton, num: 2 },
+    { name: "Setay", absence: absentButton, num: 2 },
+    { name: "Sara", absence: absentButton, num: 2 },
   ];
   const columns = [
     { field: "name", headerName: "Name", width: 150 },
-    { field: "lecture1", headerName: "Lecture 1", width: 140 },
-    { field: "lecture2", headerName: "Lecture 2", width: 140 },
-    { field: "lecture3", headerName: "Lecture 3", width: 140 },
-    { field: "lecture4", headerName: "Lecture 4", width: 140 },
-    { field: "lecture5", headerName: "Lecture 5", width: 140 },
-    { field: "lecture6", headerName: "Lecture 6", width: 140 },
-    { field: "lecture7", headerName: "Lecture 7", width: 140 },
-    { field: "lecture8", headerName: "Lecture 8", width: 140 },
-    { field: "lecture9", headerName: "Lecture 9", width: 140 },
-    { field: "lecture10", headerName: "Presentation", width: 140 },
+    { field: "absence", headerName: "Absence", width: 150 },
+    { field: "num", headerName: "Number of Absences", width: 150 },
+    { field: "clarification", headerName: "Send clarification", width: 150 },
   ];
-  const dates = {
-    lecture1: "5/22/2022",
-    lecture2: "5/22/2022",
-    lecture3: "5/22/2022",
-    lecture4: "5/22/2022",
-    lecture5: "5/22/2022",
-    lecture6: "5/22/2022",
-    lecture7: "5/22/2022",
-    lecture8: "5/22/2022",
-    lecture9: "6/4/2022",
-    lecture10: "6/5/2022",
-  };
-  const showResult = (result) => {
-    add(result);
-    setResultAlert(true);
-    setTimeout(() => {
-      setResultAlert(false);
-    }, 3000);
-  };
-  const onSubmit = () => {
-    showResult(idField);
-    setIdField("");
-  };
-  const add = (id) => {
-    setId(id);
-    let time = new Date().toLocaleTimeString();
-    let date = new Date().toLocaleDateString();
-    // console.log(time);
-    // console.log(date);
-    participants.forEach((participant) => {
-      if (participant.id == id) {
-        console.log(id);
-        Object.keys(dates).forEach((key) => {
-          if (dates[key] == date) {
-            console.log(dates[key], date);
-            setAttendance((attendance) => [
-              ...attendance.slice(0, id - 1),
-              {
-                ...attendance[id],
-                [key]: time,
-              },
-              ...attendance.slice(id),
-            ]);
-          }
-        });
-      }
-    });
-  };
-  const openAddWindow = () => {
-    setOpen(true);
-  };
-  const closeAddWindow = () => {
-    setOpen(false);
-    // window.location.reload();
-  };
-  const handleChange = (event) => {
-    setShowAll(event.target.checked);
-  };
+
+  // const showResult = (result) => {
+  //   add(result);
+  //   setResultAlert(true);
+  //   setTimeout(() => {
+  //     setResultAlert(false);
+  //   }, 3000);
+  // };
+  // const onSubmit = () => {
+  //   showResult(idField);
+  //   setIdField("");
+  // };
+  // const add = (id) => {
+  //   setId(id);
+  //   let time = new Date().toLocaleTimeString();
+  //   let date = new Date().toLocaleDateString();
+  //   // console.log(time);
+  //   // console.log(date);
+  //   employees.forEach((participant) => {
+  //     if (participant.id == id) {
+  //       console.log(id);
+  //       Object.keys(dates).forEach((key) => {
+  //         if (dates[key] == date) {
+  //           console.log(dates[key], date);
+  //           setAttendance((attendance) => [
+  //             ...attendance.slice(0, id - 1),
+  //             {
+  //               ...attendance[id],
+  //               [key]: time,
+  //             },
+  //             ...attendance.slice(id),
+  //           ]);
+  //         }
+  //       });
+  //     }
+  //   });
+  // };
+  // const openAddWindow = () => {
+  //   setOpen(true);
+  // };
+  // const closeAddWindow = () => {
+  //   setOpen(false);
+  // window.location.reload();
+  // };
+  // const handleChange = (event) => {
+  //   setShowAll(event.target.checked);
+  // };
 
   // TODO: Apply colors to the rows
   // const attended = <span className={styles.yes}></span>;
@@ -168,7 +97,7 @@ export default function AttendancePage() {
 
   return (
     <div className="main">
-      <NavBar /> <SideBar />
+      <NavBar /> <SideBar sidebarItems={sidebarItems} />
       <div
         style={{
           display: "flex",
@@ -180,28 +109,16 @@ export default function AttendancePage() {
           title="Take Attendance"
           caption="Taking attendance is an easier process now ;)"
         ></Title>
-        <Button
+        {/* <Button 
           variant="contained"
           onClick={openAddWindow}
           endIcon={<Add></Add>}
-        >
           Add
         </Button>
+      > */}
       </div>
-      <FormControlLabel
-        control={
-          <Switch color="primary" checked={showAll} onChange={handleChange} />
-        }
-        label="Show all lectures"
-      />
       <div className={styles.table_container}>
-        <DataGrid
-          rows={participants}
-          columns={
-            showAll ? columns : columns.slice(0, 1).concat(columns.slice(-5))
-          }
-          pageSize={10}
-        ></DataGrid>
+        <DataGrid rows={employees} columns={columns} pageSize={10}></DataGrid>
         {/* <Modal
           open={open}
           onClose={closeAddWindow}
