@@ -9,7 +9,9 @@ export default function ContextWrapper(props) {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    authenticate().then((user) => setUser(user));
+    authenticate().then((user) => {
+      setUser(user);
+    });
   }, []);
 
   return (

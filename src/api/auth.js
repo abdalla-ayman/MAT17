@@ -20,7 +20,7 @@ const authenticate = async () => {
         authentication: localStorage.getItem("auth-token"),
       },
     });
-    return response.data.user;
+    return response.data;
   } catch (error) {
     console.log(error);
   }

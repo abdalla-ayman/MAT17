@@ -3,10 +3,13 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
-const PrivateRoutes = () => {
-  const { user } = useContext(UserContext);
+const PrivateRoutes = ({ children }) => {
+  const context = useContext(UserContext);
+  if (!context) {
+    return <Navigate to="/signin" replace />;
+  }
 
-  return user ? <Outlet /> : <Navigate to="/signin" />;
+  return children;
 };
 
 export default PrivateRoutes;

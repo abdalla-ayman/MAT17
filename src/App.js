@@ -44,6 +44,7 @@ const theme = createTheme({
 
 function App() {
   const { user } = useContext(UserContext);
+  // const user = {role:'admin'}
 
   // get current pathname
   let current_path = window.location.pathname;
@@ -70,44 +71,75 @@ function App() {
               />
               <Route
                 path="/employeeHome"
-                element={<EmployeeHome></EmployeeHome>}
+                element={
+                  <PrivateRoutes>
+                    <EmployeeHome></EmployeeHome>
+                  </PrivateRoutes>
+                }
               ></Route>
               <Route
                 path="/requestVacation"
-                element={<RequestVacationPage></RequestVacationPage>}
+                element={
+                  <PrivateRoutes>
+                    <RequestVacationPage></RequestVacationPage>
+                  </PrivateRoutes>
+                }
               ></Route>
               <Route
                 path="/sendCompliant"
-                element={<SendComplaintPage></SendComplaintPage>}
+                element={
+                  <PrivateRoutes>
+                    <SendComplaintPage></SendComplaintPage>
+                  </PrivateRoutes>
+                }
               ></Route>
 
               <Route
                 path="/adminHome"
-                element={<AttendancePage></AttendancePage>}
+                element={
+                  <PrivateRoutes>
+                    <AttendancePage></AttendancePage>
+                  </PrivateRoutes>
+                }
               ></Route>
               <Route
                 path="/complaints"
-                element={<ComplaintPage></ComplaintPage>}
+                element={
+                  <PrivateRoutes>
+                    <ComplaintPage></ComplaintPage>
+                  </PrivateRoutes>
+                }
               ></Route>
               <Route
                 path="/payroll"
-                element={<PayrollPage></PayrollPage>}
+                element={
+                  <PrivateRoutes>
+                    <PayrollPage></PayrollPage>
+                  </PrivateRoutes>
+                }
               ></Route>
               <Route
                 path="/sendEmail"
-                element={<SendEmailsPage></SendEmailsPage>}
+                element={
+                  <PrivateRoutes>
+                    <SendEmailsPage></SendEmailsPage>
+                  </PrivateRoutes>
+                }
               ></Route>
               <Route
                 path="/adminVacations"
-                element={<VacationRequestsPage></VacationRequestsPage>}
+                element={
+                  <PrivateRoutes>
+                    <VacationRequestsPage></VacationRequestsPage>
+                  </PrivateRoutes>
+                }
               ></Route>
               <Route path="/policies" element={<Policies></Policies>}></Route>
               <Route
                 path="/signin"
                 element={
-                  user ? (
-                    <Navigate to="/" replace></Navigate>
-                  ) : (
+                
+                  (
                     <SigninPage></SigninPage>
                   )
                 }
