@@ -38,7 +38,7 @@ const theme = createTheme({
 });
 
 function App() {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   console.log(user);
   // get current pathname
   let current_path = window.location.pathname;
@@ -55,9 +55,9 @@ function App() {
                   path="/"
                   exact
                   element={
-                    user.type == "employee" ? (
+                    user.role == "employee" ? (
                       <Navigate to={"/employeeHome"} replace></Navigate>
-                    ) : user.type == "admin" ? (
+                    ) : user.role == "admin" ? (
                       <Navigate to={"/adminHome"} replace></Navigate>
                     ) : (
                       <Navigate to={"/signin"} replace></Navigate>

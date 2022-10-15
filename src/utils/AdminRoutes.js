@@ -6,7 +6,7 @@ import { UserContext } from "../context/UserContext";
 const AdminRoutes = () => {
   const { user } = useContext(UserContext);
 
-  return user.type == "admin" ? <Outlet /> : <Navigate to="/404" />;
+  return user.role == "admin" ? <Outlet /> : <Navigate to="/404" />;
 };
 
 export default AdminRoutes;
