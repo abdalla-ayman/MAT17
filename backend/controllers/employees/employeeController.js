@@ -26,7 +26,7 @@ const employee = {
       let salt = await bcryptjs.genSalt(10);
       let hashedPassword = await bcryptjs.hash(password, salt);
 
-      const newUser = await User.create({
+      const user = await User.create({
         username,
         password: hashedPassword,
         role,
@@ -85,11 +85,13 @@ const employee = {
   abs: async (req, res) => {
     try {
       let { ids, date } = req.body;
-      await User.updateMany({ id: { $in: ids } }, {
-        $push: {  abs_dates: date }
-        ,  $inc: { abs_days: 1}
-
-      });
+      await User.updateMany(
+        { id: { $in: ids } },
+        {
+          $push: { abs_dates: date },
+          $inc: { abs_days: 1 },
+        }
+      );
     } catch (error) {
       console.log(error);
     }
