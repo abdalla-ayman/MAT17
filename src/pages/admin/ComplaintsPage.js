@@ -20,7 +20,7 @@ export default function ComplaintsPage() {
 
   useEffect(() => {
     listComplaint().then((res) => {
-      setData(res.data);
+      setData(res.data)
     });
   }, []);
 

@@ -63,6 +63,7 @@ export default function LoginPage() {
           className={styles.logo}
         /> */}
         <Box component="form" onSubmit={onLogin} noValidate sx={{ mt: 1 }}>
+          <h1>Easy Hr System Login</h1>
           {err && <h1>{err}</h1>}
           <TextField
             margin="normal"

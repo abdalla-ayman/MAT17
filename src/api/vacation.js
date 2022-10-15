@@ -20,7 +20,7 @@ const listVacation = async (page) => {
     const response = await axiosClient.get("/vacation", {
       headers: {
         page,
-        authentication:localStorage.getItem('auth-token')
+        authentication: localStorage.getItem("auth-token"),
       },
     });
     console.log(response);
