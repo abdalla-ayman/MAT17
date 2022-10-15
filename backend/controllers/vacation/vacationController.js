@@ -6,8 +6,7 @@ const vacation = require("../../models/vacation");
 const employee = {
   add: async (req, res) => {
     try {
-      let {str_date, type, days } =
-        req.body;
+      let { str_date, type, days } = req.body;
 
       //check validity of request
       if (!(str_date && type && days)) {
@@ -17,16 +16,16 @@ const employee = {
       //filter inputs make sure no code is provided
       (str_date = xssFilter.inHTMLData(str_date)),
         (type = xssFilter.inHTMLData(type)),
-        (days = xssFilter.inHTMLData(days))
+        (days = xssFilter.inHTMLData(days));
 
       //add user to db
       const vacation = await Vacation.create({
         str_date,
         type,
-        days
+        days,
+        userId: req.user.id,
       });
 
-    
       res.json(vacation);
     } catch (error) {
       console.log(error);
@@ -36,7 +35,9 @@ const employee = {
   viewAll: async (req, res) => {
     try {
       let { page } = req.headers;
-      let vacations = await Vacation.find({status: "pending"}).limit(10).skip(page);
+      let vacations = await Vacation.find({ status: "pending" })
+        .limit(10)
+        .skip(page);
       let count = await User.countDocuments({});
       res.json({ count, vacations });
     } catch (error) {
@@ -45,11 +46,10 @@ const employee = {
   },
   changeStatus: async (req, res) => {
     try {
-      let {id, action} = req.headers;
+      let { id, action } = req.headers;
 
       //find and return employee from db
-      let vacation = await Vacation.findByIdAndUpdate(id,{status: action});
-      
+      let vacation = await Vacation.findByIdAndUpdate(id, { status: action });
 
       //send to frontend
       res.json(vacation);
