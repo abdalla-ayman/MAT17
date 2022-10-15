@@ -1,4 +1,3 @@
-import { response } from "express";
 import axiosClient from "./axiosClient";
 
 const login = async (username, password) => {

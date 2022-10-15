@@ -24,7 +24,7 @@ export default function LoginPage() {
     try {
       e.preventDefault();
       let user = await login(username, password);
-      setUser(user);
+      setUser(user)
     } catch (error) {
       console.log(error);
     }
