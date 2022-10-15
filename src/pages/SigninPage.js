@@ -30,7 +30,6 @@ export default function LoginPage() {
   // };
 
   return (
-    // <div>Sign in</div>
     <Container component="main" maxWidth="xs">
       <Box
         sx={{

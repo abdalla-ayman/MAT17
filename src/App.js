@@ -23,22 +23,28 @@ import RequestVacationPage from "./pages/employee/RequestVacationPage";
 import SendComplaintPage from "./pages/employee/SendComplaintPage";
 import Error404 from "./pages/Error404";
 import EmployeeRoutes from "./utils/EmployeeRoutes";
+import Policies from "./pages/Policies";
 
 const theme = createTheme({
   palette: {
     primary: {
       main: "#2F76DB",
       light: "#2F76DB",
+      veryLight: "#73abfa",
       dark: "#1F2D5A",
+      veryDark: "#0f1a40",
     },
     secondary: {
       main: "#FBFBFB",
+      light: "#606060",
+      black: "#000000",
+      white: "#ffffff",
     },
   },
 });
 
 function App() {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   console.log(user);
   // get current pathname
   let current_path = window.location.pathname;
@@ -73,6 +79,10 @@ function App() {
                     path="/requestVacation"
                     element={<RequestVacationPage></RequestVacationPage>}
                   ></Route>
+                  <Route
+                    path="/sendCompliant"
+                    element={<SendComplaintPage></SendComplaintPage>}
+                  ></Route>
                 </Route>
                 <Route element={<AdminRoutes></AdminRoutes>}>
                   <Route
@@ -92,12 +102,16 @@ function App() {
                     element={<PayrollPage></PayrollPage>}
                   ></Route>
                   <Route
-                    path="/sendemail"
+                    path="/sendEmail"
                     element={<SendEmailsPage></SendEmailsPage>}
                   ></Route>
                   <Route
                     path="/adminVacations"
                     element={<VacationRequestsPage></VacationRequestsPage>}
+                  ></Route>
+                  <Route
+                    path="/policies"
+                    element={<Policies></Policies>}
                   ></Route>
                 </Route>
               </Route>
