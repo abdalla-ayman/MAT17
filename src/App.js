@@ -44,8 +44,11 @@ const theme = createTheme({
 });
 
 function App() {
-  const { user } = useContext(UserContext);
-  console.log(user);
+  // const { user } = useContext(UserContext);
+  // console.log(user);
+  const user = { role: "employee" };
+  // const user = {role:'admin'}
+
   // get current pathname
   let current_path = window.location.pathname;
   // If user not logged in redirect to login page
@@ -77,65 +80,57 @@ function App() {
         <ThemeProvider theme={theme}>
           <Router>
             <Routes>
-              <Route element={<PrivateRoutes></PrivateRoutes>}>
-                <Route
-                  path="/"
-                  exact
-                  element={
-                    user.role == "employee" ? (
-                      <Navigate to={"/employeeHome"} replace></Navigate>
-                    ) : user.role == "admin" ? (
-                      <Navigate to={"/adminHome"} replace></Navigate>
-                    ) : (
-                      <Navigate to={"/signin"} replace></Navigate>
-                    )
-                  }
-                />
-                <Route element={<EmployeeRoutes></EmployeeRoutes>}>
-                  <Route
-                    path="/employeeHome"
-                    element={<EmployeeHome></EmployeeHome>}
-                  ></Route>
-                  <Route
-                    path="/requestVacation"
-                    element={<RequestVacationPage></RequestVacationPage>}
-                  ></Route>
-                  <Route
-                    path="/sendCompliant"
-                    element={<SendComplaintPage></SendComplaintPage>}
-                  ></Route>
-                </Route>
-                <Route element={<AdminRoutes></AdminRoutes>}>
-                  <Route
-                    path="/adminHome"
-                    element={<AdminHome></AdminHome>}
-                  ></Route>
-                  <Route
-                    path="/attendance"
-                    element={<AttendancePage></AttendancePage>}
-                  ></Route>
-                  <Route
-                    path="/complaints"
-                    element={<ComplaintPage></ComplaintPage>}
-                  ></Route>
-                  <Route
-                    path="/payroll"
-                    element={<PayrollPage></PayrollPage>}
-                  ></Route>
-                  <Route
-                    path="/sendEmail"
-                    element={<SendEmailsPage></SendEmailsPage>}
-                  ></Route>
-                  <Route
-                    path="/adminVacations"
-                    element={<VacationRequestsPage></VacationRequestsPage>}
-                  ></Route>
-                  <Route
-                    path="/policies"
-                    element={<Policies></Policies>}
-                  ></Route>
-                </Route>
-              </Route>
+              <Route
+                path="/"
+                exact
+                element={
+                  user.role == "employee" ? (
+                    <Navigate to={"/employeeHome"} replace></Navigate>
+                  ) : user.role == "admin" ? (
+                    <Navigate to={"/adminHome"} replace></Navigate>
+                  ) : (
+                    <Navigate to={"/signin"} replace></Navigate>
+                  )
+                }
+              />
+              <Route
+                path="/employeeHome"
+                element={<EmployeeHome></EmployeeHome>}
+              ></Route>
+              <Route
+                path="/requestVacation"
+                element={<RequestVacationPage></RequestVacationPage>}
+              ></Route>
+              <Route
+                path="/sendCompliant"
+                element={<SendComplaintPage></SendComplaintPage>}
+              ></Route>
+
+              <Route
+                path="/adminHome"
+                element={<AdminHome></AdminHome>}
+              ></Route>
+              <Route
+                path="/attendance"
+                element={<AttendancePage></AttendancePage>}
+              ></Route>
+              <Route
+                path="/complaints"
+                element={<ComplaintPage></ComplaintPage>}
+              ></Route>
+              <Route
+                path="/payroll"
+                element={<PayrollPage></PayrollPage>}
+              ></Route>
+              <Route
+                path="/sendEmail"
+                element={<SendEmailsPage></SendEmailsPage>}
+              ></Route>
+              <Route
+                path="/adminVacations"
+                element={<VacationRequestsPage></VacationRequestsPage>}
+              ></Route>
+              <Route path="/policies" element={<Policies></Policies>}></Route>
               <Route path="/signin" element={<SigninPage></SigninPage>}></Route>
               <Route path="/404" element={<Error404></Error404>}></Route>
             </Routes>
