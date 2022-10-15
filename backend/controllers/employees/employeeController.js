@@ -5,18 +5,8 @@ const bcryptjs = require("bcryptjs");
 const employee = {
   add: async (req, res) => {
     try {
-      let {
-        username,
-        password,
-        role,
-        firstName,
-        lastName,
-        email,
-        salary,
-        paid_vacation,
-        unpaid_vacation,
-        abs_dates,
-      } = req.body;
+      let { username, password, role, firstName, lastName, email, salary } =
+        req.body;
 
       //check validity of request
       if (!(username && password && role)) {
@@ -32,6 +22,7 @@ const employee = {
         (email = xssFilter.inHTMLData(email)),
         (salary = xssFilter.inHTMLData(salary));
 
+      //add user to db
       const newUser = new User({
         username,
         password,
@@ -40,9 +31,6 @@ const employee = {
         lastName,
         email,
         salary,
-        paid_vacation,
-        unpaid_vacation,
-        abs_dates,
       });
 
       //hash password
@@ -69,7 +57,8 @@ const employee = {
   },
   viewAll: async (req, res) => {
     try {
-      let employees = await User.find({});
+      let { skip } = req.body;
+      let employees = await User.find({}).limit(10).skip(10);
       res.json(employees);
     } catch (error) {
       console.log(error);
@@ -79,8 +68,10 @@ const employee = {
     try {
       let id = req.params.id;
 
-      let user = await User.findById(id);
-      res.json(user);
+      let employee = await User.findById(id);
+      if (!employee) return res.status(400).json("employee not found");
+
+      res.json(employee);
     } catch (error) {
       console.log(error);
     }

@@ -9,7 +9,7 @@ router.post("/add", employee.add);
 router.get("/delete/:id", employee.delete);
 
 //view all
-router.get("/list", employee.viewAll);
+router.post("/list", employee.viewAll);
 
 //view one employee
 router.get("/:id", employee.viewOne);
