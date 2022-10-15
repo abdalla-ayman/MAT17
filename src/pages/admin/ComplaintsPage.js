@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Title from "../../components/Title";
 
@@ -7,7 +7,7 @@ import styles from "../../styles/AttendancePage.module.css";
 import NavBar from "../../components/Navbar";
 import SideBar from "../../components/Sidebar";
 
-import axios from "axios";
+import { listComplaint } from "../../api/complaints";
 
 export default function ComplaintsPage() {
   const [data, setData] = useState({});
@@ -18,16 +18,16 @@ export default function ComplaintsPage() {
     "adminVacations",
   ];
 
+  useEffect(() => {
+    listComplaint().then((res) => {
+      setData(res.data);
+    });
+  }, []);
+
   const columns = [
     { field: "name", headerName: "Name", width: 100 },
     { field: "message", headerName: "Message", width: 200 },
   ];
-
-  axios.get("127.0.0.1/complaints/list").then((response) => {
-    setData(response.data);
-    console.log(data);
-    console.log(response.data);
-  });
 
   return (
     <div className="main">

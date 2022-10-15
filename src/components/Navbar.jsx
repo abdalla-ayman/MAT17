@@ -21,10 +21,10 @@ export default function Navbar() {
             variant="body1"
             color="primary"
           >
-            {user.username}
+            {/* {user.username} */}
           </Typography>
           <Typography component="p" variant="caption" color="secondary.light">
-            User ID: {user.id}
+            {/* User ID: {user.id} */}
           </Typography>
         </div>
         <div className={styles.logout} onClick={onLogout}>

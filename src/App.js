@@ -70,50 +70,36 @@ function App() {
               <Route
                 path="/requestVacation"
                 element={
-                  <PrivateRoutes>
                     <RequestVacationPage></RequestVacationPage>
-                  </PrivateRoutes>
                 }
               ></Route>
               <Route
                 path="/sendCompliant"
-                element={
-                  <PrivateRoutes>
-                    <SendComplaintPage></SendComplaintPage>
-                  </PrivateRoutes>
-                }
+                element={<SendComplaintPage></SendComplaintPage>}
               ></Route>
 
               <Route
                 path="/adminHome"
-                element={
-                  <PrivateRoutes>
-                    <AttendancePage></AttendancePage>
-                  </PrivateRoutes>
-                }
+                element={<AttendancePage></AttendancePage>}
               ></Route>
               <Route
                 path="/complaints"
                 element={
-                  <PrivateRoutes>
+                  
                     <ComplaintPage></ComplaintPage>
-                  </PrivateRoutes>
+                
                 }
               ></Route>
               <Route
                 path="/sendEmail"
                 element={
-                  <PrivateRoutes>
                     <SendEmailsPage></SendEmailsPage>
-                  </PrivateRoutes>
                 }
               ></Route>
               <Route
                 path="/adminVacations"
                 element={
-                  <PrivateRoutes>
                     <VacationRequestsPage></VacationRequestsPage>
-                  </PrivateRoutes>
                 }
               ></Route>
               <Route path="/policies" element={<Policies></Policies>}></Route>

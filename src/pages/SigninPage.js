@@ -26,6 +26,8 @@ export default function LoginPage() {
       let user = await login(username, password);
       setUser(user)
     } catch (error) {
+
+
       console.log(error);
     }
   };
