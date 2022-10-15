@@ -11,8 +11,8 @@ const UserSchema = new Schema({
   },
   role: {
     type: String,
-        enum : ['admin','employee'],
-        default: 'employee'
+    enum: ["admin", "employee"],
+    default: "employee",
   },
   firstName: {
     type: String,
@@ -35,6 +35,9 @@ const UserSchema = new Schema({
   },
   abs_dates: {
     type: [Date],
+  },
+  abs_days: {
+    type: Number,
   },
 });
 

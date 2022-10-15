@@ -17,7 +17,13 @@ const VacationSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    required: true
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: ["pending", "accepted", "rejected"],
+    required: true,
+    default: "pending",
   },
 });
 
