@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 import Button from "@mui/material/Button";
@@ -17,6 +17,8 @@ import { login } from "../api/auth";
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [err, setErr] = useState(false);
+  const [signedIn, setSignedIn] = useState(false);
 
   const { setUser } = useContext(UserContext);
 
@@ -24,9 +26,10 @@ export default function LoginPage() {
     try {
       e.preventDefault();
       let user = await login(username, password);
-      setUser(user)
+      setUser(user);
+      setSignedIn(true);
     } catch (error) {
-      console.log(error);
+      setErr(error.data);
     }
   };
 
@@ -57,6 +60,7 @@ export default function LoginPage() {
           className={styles.logo}
         /> */}
         <Box component="form" onSubmit={onLogin} noValidate sx={{ mt: 1 }}>
+          {err && <h1>{err}</h1>}
           <TextField
             margin="normal"
             required
