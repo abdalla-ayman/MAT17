@@ -1,5 +1,4 @@
-import React, { createContext, useState } from "react";
-import jwt_decode from "jwt-decode";
+import React, { createContext, useState, useEffect } from "react";
 
 export const UserContext = createContext({
   signedIn: true,
@@ -9,18 +8,15 @@ export const UserContext = createContext({
   login: (e) => {},
   logout: () => {},
   user: {},
-  signup: () => {},
 });
 
 export default function ContextWrapper(props) {
-  const [tokens, setTokens] = useState(() =>
-    localStorage.getItem("tokens")
-      ? JSON.parse(localStorage.getItem("tokens"))
-      : null
+  const [token, setToken] = useState(() =>
+    localStorage.getItem("token") ? localStorage.getItem("token") : null
   );
   const [user, setUser] = useState(() =>
-    localStorage.getItem("tokens")
-      ? jwt_decode(localStorage.getItem("tokens"))
+    localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))
       : null
   );
   const [userType, setUserType] = useState("waiting");
@@ -40,41 +36,45 @@ export default function ContextWrapper(props) {
 
     let data = await response.json();
     if (response.status === 200) {
-      setTokens(data);
-      setUser(jwt_decode(data.access));
-      localStorage.setItem("tokens", JSON.stringify(data));
+      let token = data.token;
+      let user = data.user;
+      setToken(token);
+      setUser(user);
+      localStorage.setItem("token", JSON.stringify(token));
+      localStorage.setItem("user", JSON.stringify(user));
+      console.log(user);
       window.location.replace("/");
     } else {
-      console.log("something went wrong");
+      alert(`Error: ${data}`);
     }
   };
 
-  const signup = async (e) => {
-    e.preventDefault();
-    let response = await fetch("http://127.0.0.1:8000/api/users/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: e.target.username.value,
-        password: e.target.password.value,
-        first_name: e.target.firstName.value,
-        last_name: e.target.lastName.value,
-        email: e.target.email.value,
-      }),
-    });
-    let data = await response.json();
-    console.log(data);
-    if (response.status === 201) {
-      login(e);
-    } else {
-      console.log("something went wrong");
-    }
-  };
+  // const signup = async (e) => {
+  //   e.preventDefault();
+  //   let response = await fetch("http://127.0.0.1:8000/api/users/", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       username: e.target.username.value,
+  //       password: e.target.password.value,
+  //       first_name: e.target.firstName.value,
+  //       last_name: e.target.lastName.value,
+  //       email: e.target.email.value,
+  //     }),
+  //   });
+  //   let data = await response.json();
+  //   console.log(data);
+  //   if (response.status === 201) {
+  //     login(e);
+  //   } else {
+  //     console.log("something went wrong");
+  //   }
+  // };
   const logout = () => {
-    localStorage.removeItem("tokens");
-    setTokens(null);
+    localStorage.removeItem("token");
+    setToken(null);
     setUser(null);
     // window.location.replace("/");
   };
@@ -89,7 +89,6 @@ export default function ContextWrapper(props) {
     user: user,
     login: login,
     logout: logout,
-    signup: signup,
   };
   return (
     <UserContext.Provider value={context}>
