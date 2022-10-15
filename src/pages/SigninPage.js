@@ -17,14 +17,19 @@ import { login } from "../api/auth";
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
 
   const onLogin = async (e) => {
     try {
       e.preventDefault();
+      if (username == "admin1") {
+        navigate("/adminHome");
+      } else {
+        navigate("/requestVacation");
+      }
       let user = await login(username, password);
-      setUser(user)
+      setUser(user);
     } catch (error) {
       console.log(error);
     }

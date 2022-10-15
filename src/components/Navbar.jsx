@@ -3,13 +3,18 @@ import styles from "../styles/Navbar.module.css";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Typography from "@mui/material/Typography";
 import { UserContext } from "../context/UserContext";
+import {useNavigate} from "react-router-dom"
 
 export default function Navbar() {
   // get logout from userContext
-  const { logout} = useContext(UserContext);
   const user = {id:1,username:"momen"}
+  const navigate = useNavigate()
+  
   const onLogout = () => {
-    logout();
+    if (localStorage.getItem('auth-token')){
+      localStorage.removeItem('auth-token')
+    }
+    navigate('/signin')
   };
   console.log(user);
   return (
