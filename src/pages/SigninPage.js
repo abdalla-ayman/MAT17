@@ -17,6 +17,7 @@ import { login } from "../api/auth";
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [err, setErr] = useState();
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
 

@@ -20,7 +20,6 @@ import RequestVacationPage from "./pages/employee/RequestVacationPage";
 import SendComplaintPage from "./pages/employee/SendComplaintPage";
 import Error404 from "./pages/Error404";
 import EmployeeRoutes from "./utils/EmployeeRoutes";
-import Policies from "./pages/Policies";
 import AddEmployee from "./pages/admin/addEmployee";
 
 const theme = createTheme({
