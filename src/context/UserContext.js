@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
+import { authenticate } from "../api/auth";
 
 export const UserContext = createContext({
   signedIn: true,
@@ -13,6 +14,9 @@ export const UserContext = createContext({
 export default function ContextWrapper(props) {
   const [user, setUser] = useState();
 
+  useEffect(() => {
+    authenticate()
+  }, []);
 
     let data = await response.json();
     if (response.status === 200) {
