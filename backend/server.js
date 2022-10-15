@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require("path");
 require("dotenv").config();
 const app = express();
 const getUserMiddleware = require("./middleware/getUserMiddeware");
@@ -16,6 +17,7 @@ mongoose
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
+app.use(path.join(__dirname, "..", "build"), express.static());
 
 //auth related Middleware
 
@@ -37,6 +39,9 @@ app.use("/employee", require("./routes/employees/employees"));
 app.use("/vacation", require("./routes/vacation/vacation"));
 app.use("/complaint", require("./routes/complaints"));
 
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "build", "index.html"));
+});
 //validate token
 
 const Port = process.env.PORT || 5000;
