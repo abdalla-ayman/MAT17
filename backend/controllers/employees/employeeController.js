@@ -58,10 +58,14 @@ const employee = {
   viewAll: async (req, res) => {
     try {
       let { page } = req.headers || 0;
+
+      //set limmit and skips for page pagination
       let limit = 10;
       let employees = await User.find({})
         .limit(limit)
         .skip(page * limit);
+
+      //get number of users in d
       let count = await User.countDocuments({});
       res.json({ count, employees });
     } catch (error) {

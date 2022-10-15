@@ -21,6 +21,7 @@ import SendComplaintPage from "./pages/employee/SendComplaintPage";
 import Error404 from "./pages/Error404";
 import EmployeeRoutes from "./utils/EmployeeRoutes";
 import Policies from "./pages/Policies";
+import AddEmployee from "./pages/admin/addEmployee";
 
 const theme = createTheme({
   palette: {
@@ -58,9 +59,9 @@ function App() {
                 path="/"
                 exact
                 element={
-                  user.role == "employee" ? (
+                  user.role === "employee" ? (
                     <Navigate to={"/requestVacation"} replace></Navigate>
-                  ) : user.role == "admin" ? (
+                  ) : user.role === "admin" ? (
                     <Navigate to={"/adminHome"} replace></Navigate>
                   ) : (
                     <Navigate to={"/signin"} replace></Navigate>
@@ -69,9 +70,11 @@ function App() {
               />
               <Route
                 path="/requestVacation"
-                element={
-                    <RequestVacationPage></RequestVacationPage>
-                }
+                element={<RequestVacationPage></RequestVacationPage>}
+              ></Route>
+              <Route
+                path="/addEmployee"
+                element={<AddEmployee></AddEmployee>}
               ></Route>
               <Route
                 path="/sendCompliant"
@@ -84,23 +87,15 @@ function App() {
               ></Route>
               <Route
                 path="/complaints"
-                element={
-                  
-                    <ComplaintPage></ComplaintPage>
-                
-                }
+                element={<ComplaintPage></ComplaintPage>}
               ></Route>
               <Route
                 path="/sendEmail"
-                element={
-                    <SendEmailsPage></SendEmailsPage>
-                }
+                element={<SendEmailsPage></SendEmailsPage>}
               ></Route>
               <Route
                 path="/adminVacations"
-                element={
-                    <VacationRequestsPage></VacationRequestsPage>
-                }
+                element={<VacationRequestsPage></VacationRequestsPage>}
               ></Route>
               <Route path="/policies" element={<Policies></Policies>}></Route>
               <Route path="/signin" element={<SigninPage></SigninPage>}></Route>
