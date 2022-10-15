@@ -6,7 +6,7 @@ import { UserContext } from "../context/UserContext";
 const EmployeeRoutes = () => {
   const { user } = useContext(UserContext);
 
-  return user ? <Outlet /> : <Navigate to="/404" />;
+  return user.role == "employee" ? <Outlet /> : <Navigate to="/404" />;
 };
 
 export default EmployeeRoutes;
