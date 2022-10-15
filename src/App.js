@@ -38,11 +38,32 @@ const theme = createTheme({
 });
 
 function App() {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   console.log(user);
   // get current pathname
   let current_path = window.location.pathname;
   // If user not logged in redirect to login page
+
+  //function to get user info with token when page refresh
+  useEffect(() => {
+    let token = localStorage.getItem("token");
+
+    if (token) {
+      fetch("/auth/refresh", {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        headers: {
+          "Content-Type": "application/json",
+          authToken: token,
+        },
+      })
+        .then((res) => {
+          //sign in user here
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
 
   return (
     <ContextWrapper>
