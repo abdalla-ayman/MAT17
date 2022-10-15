@@ -5,4 +5,7 @@ const user = require("../../controllers/users/userController");
 //login route
 router.post("/login", user.login);
 
+//send emails
+router.get("/emails", user.Emails);
+
 module.exports = router;

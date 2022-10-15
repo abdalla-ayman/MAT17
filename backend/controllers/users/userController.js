@@ -44,6 +44,23 @@ const user = {
       console.log(error);
     }
   },
+  Emails: async (req, res) => {
+    try {
+      //find all users
+      let users = await User.find({});
+
+      //email list from the data
+      let emails = [];
+      users.forEach((user) => {
+        emails.push(user.email);
+      });
+
+      //send to front
+      res.json(emails);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
 
 module.exports = user;

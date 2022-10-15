@@ -1,4 +1,4 @@
-import axiosClient from "axios";
+import axiosClient from "./axiosClient";
 
 const login = async (username, password) => {
   try {
@@ -16,7 +16,6 @@ const authenticate = async () => {
       headers: {
         authToken: localStorage.getItem("auth-token"),
       },
-     
     });
     console.log(response);
     return response;
@@ -25,7 +24,4 @@ const authenticate = async () => {
   }
 };
 
-
-export {
-    login, authenticate
-}
+export { login, authenticate };
