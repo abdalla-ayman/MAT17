@@ -27,20 +27,18 @@ const user = {
       let isMatch = await bycrypt.compare(password, user.password);
 
       if (!isMatch) {
-        return res.status(400).json("wrong password");
+        return res.status(400).json("incorrect password");
       }
 
       //sign user
-      jwt.sign({ id: user._id }, process.env.JWTSECRET, (err, token) => {
-        if (err) throw err;
-        res.json({
-          token,
-          user: {
-            id: user.id,
-            username: user.username,
-          },
-        });
-      });
+      let token = await jwt.sign({ id: user._id }, process.env.JWTSECRET);
+      return res.json({
+        token,
+        user: {
+          id: user.id,
+          username: user.username,
+        
+      }})
     } catch (error) {
       console.log(error);
     }
