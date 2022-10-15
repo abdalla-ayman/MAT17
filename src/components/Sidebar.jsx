@@ -10,7 +10,7 @@ export default function Sidebar({sidebarItems}) {
     <div className={styles.sidebar}>
       <div>
          <img 
-          src={require("../assets/images/easy-high-resolution-logo.svg")}
+          src={require("../assets/images/logo.png")}
           alt="Techworks Logo" 
           className={styles.logo}>
         </img>

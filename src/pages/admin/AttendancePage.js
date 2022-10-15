@@ -12,10 +12,9 @@ import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
 
 import styles from "../styles/AttendancePage.module.css";
-import Qrcode from "../components/Qrcode";
 
-import NavBar from "../components/NavBar";
-import SideBar from "../components/SideBar";
+import NavBar from "../../components/NavBar";
+import SideBar from "../../components/SideBar";
 
 export default function AttendancePage() {
   const [resultAlert, setResultAlert] = useState(false);
@@ -179,7 +178,7 @@ export default function AttendancePage() {
       >
         <Title
           title="Take Attendance"
-          caption="Attendance is an easier process now ;)"
+          caption="Taking attendance is an easier process now ;)"
         ></Title>
         <Button
           variant="contained"
@@ -203,7 +202,7 @@ export default function AttendancePage() {
           }
           pageSize={10}
         ></DataGrid>
-        <Modal
+        {/* <Modal
           open={open}
           onClose={closeAddWindow}
           aria-labelledby="modal-modal-scan"
@@ -242,7 +241,7 @@ export default function AttendancePage() {
           >
             Added {id} to the list
           </Alert>
-        ) : null}
+        ) : null} */}
       </div>
     </div>
   );
