@@ -20,7 +20,6 @@ import RequestVacationPage from "./pages/employee/RequestVacationPage";
 import SendComplaintPage from "./pages/employee/SendComplaintPage";
 import Error404 from "./pages/Error404";
 import EmployeeRoutes from "./utils/EmployeeRoutes";
-import Policies from "./pages/Policies";
 
 const theme = createTheme({
   palette: {
@@ -119,7 +118,6 @@ function App() {
                 path="/adminVacations"
                 element={<VacationRequestsPage></VacationRequestsPage>}
               ></Route>
-              <Route path="/policies" element={<Policies></Policies>}></Route>
               <Route path="/signin" element={<SigninPage></SigninPage>}></Route>
               <Route path="/404" element={<Error404></Error404>}></Route>
             </Routes>

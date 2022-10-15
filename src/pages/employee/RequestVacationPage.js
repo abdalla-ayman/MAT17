@@ -15,6 +15,7 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
+import Title from "../../components/Title";
 
 import styles from "../../styles/SigninPage.module.css";
 
@@ -45,6 +46,10 @@ export default function RequestVacationPage() {
             alignItems: "center",
           }}
         >
+          <Title
+            title="Request a vacation"
+            caption="Request a time off from the HR"
+          ></Title>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Box
               component="form"

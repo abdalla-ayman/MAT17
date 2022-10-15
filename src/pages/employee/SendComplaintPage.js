@@ -4,6 +4,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import SendIcon from "@mui/icons-material/Send";
 import Alert from "@mui/material/Alert";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 import NavBar from "../../components/Navbar";
 import SideBar from "../../components/Sidebar";
@@ -12,10 +16,10 @@ import Title from "../../components/Title";
 export default function SendComplaintPage() {
   const sidebarItems = ["requestVacation", "sendComplaint"];
   const [message, setMessage] = useState("");
-  const [userId, seUserId] = useState("");
+  const [userId, setUserId] = useState("");
   const [ok, setOk] = useState(false);
   const [error, setError] = useState(false);
-  let usersList = { id: 0, firstName: "Momen", lastName: "Abdelwadoud" };
+  let usersList = { id: 0, username: "momen" };
 
   const showOk = () => {
     setOk(true);
@@ -29,7 +33,9 @@ export default function SendComplaintPage() {
       setError(false);
     }, 2000);
   };
-
+  const handleChange = (e) => {
+    setUserId(e.target.value);
+  };
   return (
     <div
       className="main"
@@ -42,8 +48,8 @@ export default function SendComplaintPage() {
     >
       <NavBar /> <SideBar sidebarItems={sidebarItems} />
       <Title
-        title="Send Emails to users"
-        caption="Send important global updates only"
+        title="Send A Complaint"
+        caption="Send Complaints/Advices anonymously to the HR manager"
       ></Title>
       <Typography
         variant="body2"
@@ -54,6 +60,18 @@ export default function SendComplaintPage() {
       >
         User:
       </Typography>
+      <FormControl fullWidth>
+        <InputLabel id="select-user">User</InputLabel>
+        <Select
+          labelId="select-user"
+          id="demo-simple-select"
+          value={userId}
+          label="User"
+          onChange={handleChange}
+        >
+          <MenuItem value={1}>momenwadoud</MenuItem>
+        </Select>
+      </FormControl>
       <Typography
         variant="body2"
         fontFamily={"roboto"}
@@ -64,12 +82,12 @@ export default function SendComplaintPage() {
         Complaint:
       </Typography>
       <TextField
-        onChange={(event) => setBody(event.target.value)}
+        // onChange={(event) => setBody(event.target.value)}
         multiline
         required
-        label="Email Body"
+        label="Message"
         variant="outlined"
-        value={body}
+        // value={body}
         fullWidth
         inputProps={{
           style: {
@@ -93,34 +111,6 @@ export default function SendComplaintPage() {
           Send
         </Button>
       </div>
-      {ok ? (
-        <Alert
-          style={{
-            position: "fixed",
-            bottom: "10px",
-            left: "10px",
-            zIndex: "999999",
-          }}
-          onClose={() => {}}
-          severity="success"
-        >
-          Email sent successfully
-        </Alert>
-      ) : null}
-      {error ? (
-        <Alert
-          style={{
-            position: "fixed",
-            bottom: "10px",
-            left: "10px",
-            zIndex: "999999",
-          }}
-          onClose={() => {}}
-          severity="error"
-        >
-          An error occurred
-        </Alert>
-      ) : null}
     </div>
   );
 }
