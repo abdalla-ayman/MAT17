@@ -67,14 +67,7 @@ function App() {
                   )
                 }
               />
-              <Route
-                path="/employeeHome"
-                element={
-                  <PrivateRoutes>
-                    <EmployeeHome></EmployeeHome>
-                  </PrivateRoutes>
-                }
-              ></Route>
+
               <Route
                 path="/requestVacation"
                 element={
