@@ -5,7 +5,7 @@ import { UserContext } from "../context/UserContext";
 
 const PrivateRoutes = ({ children }) => {
   const context = useContext(UserContext);
-  if (!context) {
+  if (!context.user) {
     return <Navigate to="/signin" replace />;
   }
 
