@@ -16,7 +16,6 @@ export default function ListItem({name}) {
     'attendance':QrCodeIcon,
     'complaints':PriorityHighIcon,
     'sendEmail':Email,
-    'payroll':PaidIcon, 
     'adminVacations':BeachAccessIcon,
     'employeeHome': PeopleAltIcon,
     'requestVacation': BeachAccessIcon,

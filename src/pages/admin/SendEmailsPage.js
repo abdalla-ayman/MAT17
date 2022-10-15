@@ -14,7 +14,6 @@ export default function SendEmailsPage() {
     "adminHome",
     "complaints",
     "sendEmail",
-    "payroll",
     "adminVacations",
   ];
   const [ok, setOk] = useState(false);
