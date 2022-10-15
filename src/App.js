@@ -1,6 +1,6 @@
 import "./styles/App.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -49,6 +49,27 @@ function App() {
   // get current pathname
   let current_path = window.location.pathname;
   // If user not logged in redirect to login page
+
+  //function to get user info with token when page refresh
+  useEffect(() => {
+    let token = localStorage.getItem("token");
+
+    if (token) {
+      fetch("/auth/refresh", {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        headers: {
+          "Content-Type": "application/json",
+          authToken: token,
+        },
+      })
+        .then((res) => {
+          //sign in user here
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
 
   return (
     <ContextWrapper>

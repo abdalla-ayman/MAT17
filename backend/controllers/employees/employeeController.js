@@ -57,8 +57,11 @@ const employee = {
   },
   viewAll: async (req, res) => {
     try {
-      let { page } = req.headers;
-      let employees = await User.find({}).limit(10).skip(page);
+      let { page } = req.headers || 0;
+      let limit = 10;
+      let employees = await User.find({})
+        .limit(limit)
+        .skip(page * limit);
       let count = await User.countDocuments({});
       res.json({ count, employees });
     } catch (error) {

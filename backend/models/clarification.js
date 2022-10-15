@@ -6,10 +6,6 @@ const ClarificationSchema = new Schema({
     ref: "User",
     required: true,
   },
-  message: {
-    type: String,
-    required: true,
-  },
 });
 
 module.exports = model("clarification", ClarificationSchema);
