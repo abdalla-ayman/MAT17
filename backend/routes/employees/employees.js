@@ -2,8 +2,6 @@ const express = require("express");
 const router = express.Router();
 const employee = require("../../controllers/employees/employeeController");
 
-
-
 //view all
 router.get("/", employee.viewAll);
 
@@ -14,7 +12,7 @@ router.post("/add", employee.add);
 router.delete("/", employee.delete);
 
 // absence route
-router.post('/abs', employee.abs)
+router.post("/abs", employee.abs);
 
 //view one employee
 router.get("/:id", employee.viewOne);
