@@ -31,11 +31,11 @@ export default function AttendancePage() {
   const absentButton = <Button size={"small"} type={"warning"}></Button>;
 
   const employees = [
-    { name: "Momen", absence: absentButton, num: 2 },
-    { name: "Hamdi", absence: absentButton, num: 2 },
-    { name: "Nihal", absence: absentButton, num: 2 },
-    { name: "Setay", absence: absentButton, num: 2 },
-    { name: "Sara", absence: absentButton, num: 2 },
+    { id: 1, name: "Momen", absence: "absent", num: 2 },
+    { id: 2, name: "Hamdi", absence: "absent", num: 2 },
+    { id: 3, name: "Nihal", absence: "absent", num: 2 },
+    { id: 4, name: "Setay", absence: "absent", num: 2 },
+    { id: 5, name: "Sara", absence: "absent", num: 2 },
   ];
   const columns = [
     { field: "name", headerName: "Name", width: 150 },
