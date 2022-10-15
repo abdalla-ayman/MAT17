@@ -1,6 +1,6 @@
 import "./styles/App.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
