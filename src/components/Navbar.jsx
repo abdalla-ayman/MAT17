@@ -27,10 +27,10 @@ export default function Navbar() {
             variant="body1"
             color="primary"
           >
-            {user.username}
+            Ahmed Jmd
           </Typography>
           <Typography component="p" variant="caption" color="secondary.light">
-            User ID: {user.id}
+            User ID: 123456
           </Typography>
         </div>
         <div className={styles.logout} onClick={onLogout}>

@@ -20,6 +20,7 @@ import RequestVacationPage from "./pages/employee/RequestVacationPage";
 import SendComplaintPage from "./pages/employee/SendComplaintPage";
 import Error404 from "./pages/Error404";
 import EmployeeRoutes from "./utils/EmployeeRoutes";
+import AddEmployee from "./pages/admin/addEmployee";
 
 const theme = createTheme({
   palette: {
@@ -80,9 +81,9 @@ function App() {
                 path="/"
                 exact
                 element={
-                  user.role == "employee" ? (
+                  user.role === "employee" ? (
                     <Navigate to={"/requestVacation"} replace></Navigate>
-                  ) : user.role == "admin" ? (
+                  ) : user.role === "admin" ? (
                     <Navigate to={"/adminHome"} replace></Navigate>
                   ) : (
                     <Navigate to={"/signin"} replace></Navigate>
@@ -98,7 +99,11 @@ function App() {
                 element={<RequestVacationPage></RequestVacationPage>}
               ></Route>
               <Route
-                path="/sendComplaint"
+                path="/addEmployee"
+                element={<AddEmployee></AddEmployee>}
+              ></Route>
+              <Route
+                path="/sendCompliant"
                 element={<SendComplaintPage></SendComplaintPage>}
               ></Route>
 

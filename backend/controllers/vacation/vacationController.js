@@ -2,6 +2,7 @@ const Vacation = require("../../models/vacation");
 const xssFilter = require("xss-filters");
 const bcryptjs = require("bcryptjs");
 const vacation = require("../../models/vacation");
+const User = require("../../models/user");
 
 const employee = {
   add: async (req, res) => {
@@ -37,8 +38,10 @@ const employee = {
       let { page } = req.headers;
       let vacations = await Vacation.find({ status: "pending" })
         .limit(10)
-        .skip(page);
-      let count = await User.countDocuments({});
+        .skip(page)
+        .populate("userId", "firstName");
+
+      let count = await Vacation.countDocuments({});
       res.json({ count, vacations });
     } catch (error) {
       console.log(error);

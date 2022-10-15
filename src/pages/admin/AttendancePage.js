@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Title from "../../components/Title";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -15,8 +15,23 @@ import styles from "../../styles/AttendancePage.module.css";
 
 import NavBar from "../../components/Navbar";
 import SideBar from "../../components/Sidebar";
+import { ViewAll } from "../../api/employee";
 
 export default function AttendancePage() {
+  const [employees1, setEmployees1] = useState({});
+  const [count, setCount] = useState(0);
+  console.log(employees1, count);
+  //useEffect function toget all users from database
+  useEffect(() => {
+    ViewAll(10)
+      .then((res) => {
+        setEmployees1(res.data.employees);
+        setCount(res.data.count);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   const sidebarItems = [
     "adminHome",
     "complaints",
@@ -29,17 +44,19 @@ export default function AttendancePage() {
 
   const absentButton = <Button size={"small"} type={"warning"}></Button>;
 
-  const employees = [
-    { id: 1, name: "Momen", absence: "absent", num: 2 },
-    { id: 2, name: "Hamdi", absence: "absent", num: 2 },
-    { id: 3, name: "Nihal", absence: "absent", num: 2 },
-    { id: 4, name: "Setay", absence: "absent", num: 2 },
-    { id: 5, name: "Sara", absence: "absent", num: 2 },
-  ];
+  // const employees = [
+  //   { id: 1, name: "Momen", absence: "absent", num: 2 },
+  //   { id: 2, name: "Hamdi", absence: "absent", num: 2 },
+  //   { id: 3, name: "Nihal", absence: "absent", num: 2 },
+  //   { id: 4, name: "Setay", absence: "absent", num: 2 },
+  //   { id: 5, name: "Sara", absence: "absent", num: 2 },
+  // ];
   const columns = [
-    { field: "name", headerName: "Name", width: 150 },
+    { field: "firstName", headerName: "first Name", width: 150 },
+    { field: "lastName", headerName: "last Name", width: 150 },
+    { field: "salary", headerName: "Salary", width: 150 },
     { field: "absence", headerName: "Absence", width: 150 },
-    { field: "num", headerName: "Number of Absences", width: 150 },
+    { field: "abs_days", headerName: "Number of Absences", width: 150 },
     { field: "clarification", headerName: "Send clarification", width: 150 },
   ];
 
@@ -117,7 +134,12 @@ export default function AttendancePage() {
       > */}
       </div>
       <div className={styles.table_container}>
-        <DataGrid rows={employees} columns={columns} pageSize={10}></DataGrid>
+        <DataGrid
+          rows={employees1}
+          columns={columns}
+          getRowId={(row) => row._id}
+          pageSize={10}
+        ></DataGrid>
         {/* <Modal
           open={open}
           onClose={closeAddWindow}
