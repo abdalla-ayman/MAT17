@@ -13,6 +13,10 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+import Navbar from "../../components/Navbar";
+import Sidebar from "../../components/Sidebar";
+
+import styles from "../../styles/SigninPage.module.css";
 
 export default function RequestVacationPage() {
   const sidebarItems = ["requestVacation", "sendComplaint"];
@@ -30,56 +34,76 @@ export default function RequestVacationPage() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 3,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <img
-          src={require("../../assets//images/logo.png")}
-          alt="Logo"
-          className={styles.logo}
-        />
-        <Box component="form" onSubmit={sendRequest} noValidate sx={{ mt: 1 }}>
-          <DesktopDatePicker
-            label="Start Date"
-            inputFormat="MM/DD/YYYY"
-            value={startDate}
-            onChange={changeStartDate}
-            renderInput={(params) => <TextField {...params} />}
+    <div>
+      <Navbar></Navbar> <Sidebar sidebarItems={sidebarItems}></Sidebar>
+      <Container component="main" maxWidth="md">
+        <Box
+          sx={{
+            marginTop: 4,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={require("../../assets//images/logo.png")}
+            alt="Logo"
+            className={styles.logo}
           />
-          <DesktopDatePicker
-            label="End Date"
-            inputFormat="MM/DD/YYYY"
-            value={endDate}
-            onChange={changeEndDate}
-            renderInput={(params) => <TextField {...params} />}
-          />
-          <FormControlLabel
-            control={<Checkbox value="paid" color="primary" />}
-            label={<Typography color="secondary.">Paid</Typography>}
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Send
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              {/* <Link href="#" variant="body2" color="secondary.light">
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Box
+              component="form"
+              onSubmit={sendRequest}
+              noValidate
+              sx={{ mt: 1 }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "baseline",
+                  justifyContent: "space-between",
+                  gap: "20px",
+                }}
+              >
+                <DesktopDatePicker
+                  label="Start Date"
+                  inputFormat="MM/DD/YYYY"
+                  value={startDate}
+                  onChange={changeStartDate}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  id="duration"
+                  label="Number of days"
+                  name="duration"
+                  type={"number"}
+                ></TextField>
+              </Box>
+              <FormControlLabel
+                control={<Checkbox value="paid" color="primary" />}
+                label={<Typography color="secondary.">Paid</Typography>}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Send
+              </Button>
+              <Grid container>
+                <Grid item xs>
+                  {/* <Link href="#" variant="body2" color="secondary.light">
                 Forgot password?
               </Link> */}
-            </Grid>
-          </Grid>
+                </Grid>
+              </Grid>
+            </Box>
+          </LocalizationProvider>
         </Box>
-      </Box>
-    </Container>
+      </Container>
+    </div>
   );
 }

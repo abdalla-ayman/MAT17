@@ -15,7 +15,6 @@ export default function VacationRequestsPage() {
     "adminHome",
     "complaints",
     "sendEmail",
-    "payroll",
     "adminVacations",
   ];
   const columns = [

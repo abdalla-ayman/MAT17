@@ -15,7 +15,6 @@ export default function ComplaintsPage() {
     "adminHome",
     "complaints",
     "sendEmail",
-    "payroll",
     "adminVacations",
   ];
 

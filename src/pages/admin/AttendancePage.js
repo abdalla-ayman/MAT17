@@ -21,7 +21,6 @@ export default function AttendancePage() {
     "adminHome",
     "complaints",
     "sendEmail",
-    "payroll",
     "adminVacations",
   ];
   // const [resultAlert, setResultAlert] = useState(false);
