@@ -20,8 +20,8 @@ app.use(cors());
 //auth related Middleware
 
 app.use(getUserMiddleware);
-app.use("/employee", isAuthenticated);
-app.use("/vacation", isAuthenticated);
+// app.use("/employee", isAuthenticated);
+// app.use("/vacation", isAuthenticated);
 
 //setting routes
 app.get("/authenticate", isAuthenticated, (req, res) => {
@@ -38,7 +38,6 @@ app.use("/vacation", require("./routes/vacation/vacation"));
 app.use("/complaint", require("./routes/complaints"));
 
 //validate token
-
 
 const Port = process.env.PORT || 5000;
 app.listen(Port, () => console.log(`server is running on port ${Port}`));

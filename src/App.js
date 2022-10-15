@@ -70,11 +70,7 @@ function App() {
               />
               <Route
                 path="/requestVacation"
-                element={
-                  <PrivateRoutes>
-                    <RequestVacationPage></RequestVacationPage>
-                  </PrivateRoutes>
-                }
+                element={<RequestVacationPage></RequestVacationPage>}
               ></Route>
               <Route
                 path="/addEmployee"
@@ -82,11 +78,7 @@ function App() {
               ></Route>
               <Route
                 path="/sendCompliant"
-                element={
-                  <PrivateRoutes>
-                    <SendComplaintPage></SendComplaintPage>
-                  </PrivateRoutes>
-                }
+                element={<SendComplaintPage></SendComplaintPage>}
               ></Route>
 
               <Route
@@ -95,27 +87,15 @@ function App() {
               ></Route>
               <Route
                 path="/complaints"
-                element={
-                  <PrivateRoutes>
-                    <ComplaintPage></ComplaintPage>
-                  </PrivateRoutes>
-                }
+                element={<ComplaintPage></ComplaintPage>}
               ></Route>
               <Route
                 path="/sendEmail"
-                element={
-                  <PrivateRoutes>
-                    <SendEmailsPage></SendEmailsPage>
-                  </PrivateRoutes>
-                }
+                element={<SendEmailsPage></SendEmailsPage>}
               ></Route>
               <Route
                 path="/adminVacations"
-                element={
-                  <PrivateRoutes>
-                    <VacationRequestsPage></VacationRequestsPage>
-                  </PrivateRoutes>
-                }
+                element={<VacationRequestsPage></VacationRequestsPage>}
               ></Route>
               <Route path="/policies" element={<Policies></Policies>}></Route>
               <Route path="/signin" element={<SigninPage></SigninPage>}></Route>

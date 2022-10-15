@@ -38,6 +38,7 @@ const UserSchema = new Schema({
   },
   abs_days: {
     type: Number,
+    default: 0,
   },
 });
 
