@@ -46,7 +46,7 @@ const employee = {
   },
   delete: async (req, res) => {
     try {
-      const { id } = req.params.id;
+      const { id } = req.headers;
 
       //find and delete from database
       let employee = await User.findByIdAndDelete(id);
@@ -57,9 +57,10 @@ const employee = {
   },
   viewAll: async (req, res) => {
     try {
-      let { skip } = req.body;
-      let employees = await User.find({}).limit(10).skip(10);
-      res.json(employees);
+      let { page } = req.headers;
+      let employees = await User.find({}).limit(10).skip(page);
+      let count = await User.countDocuments({});
+      res.json({ count, employees });
     } catch (error) {
       console.log(error);
     }
