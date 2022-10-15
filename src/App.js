@@ -43,10 +43,7 @@ const theme = createTheme({
 });
 
 function App() {
-  // const { user } = useContext(UserContext);
-  // console.log(user);
-  const user = { role: "employee" };
-  // const user = {role:'admin'}
+  const { user } = useContext(UserContext);
 
   // get current pathname
   let current_path = window.location.pathname;
@@ -105,7 +102,16 @@ function App() {
                 element={<VacationRequestsPage></VacationRequestsPage>}
               ></Route>
               <Route path="/policies" element={<Policies></Policies>}></Route>
-              <Route path="/signin" element={<SigninPage></SigninPage>}></Route>
+              <Route
+                path="/signin"
+                element={
+                  user ? (
+                    <Navigate to="/" replace></Navigate>
+                  ) : (
+                    <SigninPage></SigninPage>
+                  )
+                }
+              ></Route>
               <Route path="/404" element={<Error404></Error404>}></Route>
             </Routes>
           </Router>
