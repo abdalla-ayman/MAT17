@@ -84,7 +84,7 @@ function App() {
                 exact
                 element={
                   user.role == "employee" ? (
-                    <Navigate to={"/employeeHome"} replace></Navigate>
+                    <Navigate to={"/requestVacation"} replace></Navigate>
                   ) : user.role == "admin" ? (
                     <Navigate to={"/adminHome"} replace></Navigate>
                   ) : (
