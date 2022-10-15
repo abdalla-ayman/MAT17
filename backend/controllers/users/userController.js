@@ -37,8 +37,8 @@ const user = {
         user: {
           id: user.id,
           username: user.username,
-        
-      }})
+        },
+      });
     } catch (error) {
       console.log(error);
     }
