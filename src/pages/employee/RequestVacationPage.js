@@ -21,7 +21,7 @@ import styles from "../../styles/SigninPage.module.css";
 export default function RequestVacationPage() {
   const sidebarItems = ["requestVacation", "sendComplaint"];
   const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [duration, setDuration] = useState("");
 
   const sendRequest = () => {
     console.log("request");
@@ -29,13 +29,13 @@ export default function RequestVacationPage() {
   const changeStartDate = (newValue) => {
     setStartDate(newValue);
   };
-  const changeEndDate = (newValue) => {
-    setEndDate(newValue);
+  const changeDuration = (newValue) => {
+    setDuration(newValue);
   };
 
   return (
-    <div>
-      <Navbar></Navbar> <Sidebar sidebarItems={sidebarItems}></Sidebar>
+    <div className="main">
+      <Navbar></Navbar> <Sidebar sidebarItems={sidebarItems} />
       <Container component="main" maxWidth="md">
         <Box
           sx={{
@@ -45,11 +45,6 @@ export default function RequestVacationPage() {
             alignItems: "center",
           }}
         >
-          <img
-            src={require("../../assets//images/logo.png")}
-            alt="Logo"
-            className={styles.logo}
-          />
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Box
               component="form"

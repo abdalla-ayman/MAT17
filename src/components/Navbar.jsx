@@ -6,7 +6,8 @@ import { UserContext } from "../context/UserContext";
 
 export default function Navbar() {
   // get logout from userContext
-  const { logout, user } = useContext(UserContext);
+  const { logout} = useContext(UserContext);
+  const user = {id:1,username:"momen"}
   const onLogout = () => {
     logout();
   };

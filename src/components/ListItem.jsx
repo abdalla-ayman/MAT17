@@ -4,7 +4,6 @@ import ListItemText from '@mui/material/ListItemText';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
-import PaidIcon from '@mui/icons-material/Paid';
 import Email from '@mui/icons-material/Email';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import ArticleIcon from '@mui/icons-material/Article';
@@ -19,21 +18,22 @@ export default function ListItem({name}) {
     'adminVacations':BeachAccessIcon,
     'employeeHome': PeopleAltIcon,
     'requestVacation': BeachAccessIcon,
-    'sendCompliant': PriorityHighIcon,
+    'sendComplaint': PriorityHighIcon,
     'policies': ArticleIcon
   }
     const Icon = icons[name];
     const title = name.toUpperCase()
     const location = window.location.pathname
+    console.log(name)
   return (
     <a href={'/'+ name} style={{color:'inherit',textDecoration:'inherit'}}>
      <ListItemButton selected={location.slice(1) === name} >
       <ListItemIcon>
-        <Icon color='secondary.black'/>
+        <Icon style={{color:"#ffffff"}}/>
       </ListItemIcon>
       <ListItemText 
       disableTypography
-        primary={<Typography type="body2" >{title}</Typography>}
+        primary={<Typography  style={{fontSize:"12px"}} color='secondary.white'>{title}</Typography>}
         />
     </ListItemButton>
     </a>

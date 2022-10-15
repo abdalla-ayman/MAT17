@@ -41,12 +41,35 @@ const theme = createTheme({
 });
 
 function App() {
-  const { user } = useContext(UserContext);
+  // const { user } = useContext(UserContext);
+  // console.log(user);
+  const user = { role: "employee" };
   // const user = {role:'admin'}
 
   // get current pathname
   let current_path = window.location.pathname;
   // If user not logged in redirect to login page
+
+  //function to get user info with token when page refresh
+  useEffect(() => {
+    let token = localStorage.getItem("token");
+
+    if (token) {
+      fetch("/auth/refresh", {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        headers: {
+          "Content-Type": "application/json",
+          authToken: token,
+        },
+      })
+        .then((res) => {
+          //sign in user here
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
 
   return (
     <ContextWrapper>
@@ -68,53 +91,33 @@ function App() {
                 }
               />
               <Route
-                path="/requestVacation"
-                element={
-                  <PrivateRoutes>
-                    <RequestVacationPage></RequestVacationPage>
-                  </PrivateRoutes>
-                }
+                path="/employeeHome"
+                element={<RequestVacationPage></RequestVacationPage>}
               ></Route>
               <Route
-                path="/sendCompliant"
-                element={
-                  <PrivateRoutes>
-                    <SendComplaintPage></SendComplaintPage>
-                  </PrivateRoutes>
-                }
+                path="/requestVacation"
+                element={<RequestVacationPage></RequestVacationPage>}
+              ></Route>
+              <Route
+                path="/sendComplaint"
+                element={<SendComplaintPage></SendComplaintPage>}
               ></Route>
 
               <Route
                 path="/adminHome"
-                element={
-                  <PrivateRoutes>
-                    <AttendancePage></AttendancePage>
-                  </PrivateRoutes>
-                }
+                element={<AttendancePage></AttendancePage>}
               ></Route>
               <Route
                 path="/complaints"
-                element={
-                  <PrivateRoutes>
-                    <ComplaintPage></ComplaintPage>
-                  </PrivateRoutes>
-                }
+                element={<ComplaintPage></ComplaintPage>}
               ></Route>
               <Route
                 path="/sendEmail"
-                element={
-                  <PrivateRoutes>
-                    <SendEmailsPage></SendEmailsPage>
-                  </PrivateRoutes>
-                }
+                element={<SendEmailsPage></SendEmailsPage>}
               ></Route>
               <Route
                 path="/adminVacations"
-                element={
-                  <PrivateRoutes>
-                    <VacationRequestsPage></VacationRequestsPage>
-                  </PrivateRoutes>
-                }
+                element={<VacationRequestsPage></VacationRequestsPage>}
               ></Route>
               <Route path="/policies" element={<Policies></Policies>}></Route>
               <Route path="/signin" element={<SigninPage></SigninPage>}></Route>

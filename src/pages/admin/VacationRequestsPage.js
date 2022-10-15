@@ -5,7 +5,7 @@ import Title from "../../components/Title";
 import styles from "../../styles/AttendancePage.module.css";
 
 import NavBar from "../../components/Navbar";
-import SideBar from "../../components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 
 import axios from "axios";
 
@@ -33,7 +33,7 @@ export default function VacationRequestsPage() {
 
   return (
     <div className="main">
-      <NavBar /> <SideBar sidebarItems={sidebarItems} />
+      <NavBar /> <Sidebar sidebarItems={sidebarItems} />
       <div
         style={{
           display: "flex",
