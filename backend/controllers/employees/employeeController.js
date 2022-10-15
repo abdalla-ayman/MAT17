@@ -68,9 +68,11 @@ const employee = {
     try {
       let id = req.params.id;
 
+      //find and return employee from db
       let employee = await User.findById(id);
       if (!employee) return res.status(400).json("employee not found");
 
+      //send to frontend
       res.json(employee);
     } catch (error) {
       console.log(error);
