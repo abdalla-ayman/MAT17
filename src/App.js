@@ -43,7 +43,7 @@ const theme = createTheme({
 function App() {
   // const { user } = useContext(UserContext);
   // console.log(user);
-  const user = { role: "employee" };
+  const user = { role: "" };
   // const user = {role:'admin'}
 
   // get current pathname
