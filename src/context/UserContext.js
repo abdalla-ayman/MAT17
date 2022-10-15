@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect } from "react";
-import { authenticate } from "../api/auth";
 
 export const UserContext = createContext({
   signedIn: true,
@@ -12,11 +11,28 @@ export const UserContext = createContext({
 });
 
 export default function ContextWrapper(props) {
-  const [user, setUser] = useState();
+  const [token, setToken] = useState(() =>
+    localStorage.getItem("token") ? localStorage.getItem("token") : null
+  );
+  const [user, setUser] = useState(() =>
+    localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))
+      : null
+  );
+  const [userType, setUserType] = useState("waiting");
 
-  useEffect(() => {
-    authenticate()
-  }, []);
+  const login = async (e) => {
+    e.preventDefault();
+    let response = await fetch("http://127.0.0.1:5000/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: e.target.username.value,
+        password: e.target.password.value,
+      }),
+    });
 
     let data = await response.json();
     if (response.status === 200) {
