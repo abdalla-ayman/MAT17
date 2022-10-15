@@ -31,7 +31,7 @@ export default function ListItem({name}) {
       <ListItemIcon>
         <Icon color='secondary.black'/>
       </ListItemIcon>
-      <ListItemText primary={title}  />
+      <ListItemText primary={title} style={{fontSize:"10px"}} />
     </ListItemButton>
     </a>
   )

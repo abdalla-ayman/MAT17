@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useContext} from "react";
 import styles from "../styles/Navbar.module.css";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Typography from "@mui/material/Typography";
