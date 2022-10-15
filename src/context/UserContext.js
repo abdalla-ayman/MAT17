@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
+import { authenticate } from "../api/auth";
 
 export const UserContext = createContext({
   user: {},
@@ -8,8 +9,7 @@ export default function ContextWrapper(props) {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    //send request to back to get user 
-    //set user
+    authenticate()
   }, []);
 
   return (
