@@ -27,9 +27,8 @@ app.use("/vacation", isAuthenticated);
 
 app.use("/auth", require("./routes/users/auth"));
 app.use("/employee", require("./routes/employees/employees"));
-// app.use("/vacation", require("./routes/vacation/vacation"));
+app.use("/vacation", require("./routes/vacation/vacation"));
 app.use("/complaint", require("./routes/complaints"));
-//app.use("/Absence ", require("./routes/absence /absence"));
 
 const Port = process.env.PORT || 5000;
 app.listen(Port, () => console.log(`server is running on port ${Port}`));

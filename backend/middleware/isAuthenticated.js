@@ -1,4 +1,4 @@
-const getUserMiddleware = async (req, res, next) => {
+const isAuth = async (req, res, next) => {
   try {
     if (!req.user) return res.status(401).json("login first!");
     else next();
@@ -7,4 +7,4 @@ const getUserMiddleware = async (req, res, next) => {
   }
 };
 
-module.exports = getUserMiddleware;
+module.exports = isAuth;
